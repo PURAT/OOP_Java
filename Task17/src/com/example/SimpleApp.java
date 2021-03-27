@@ -21,6 +21,7 @@ public class SimpleApp extends JFrame {
     private JRadioButton rbDoWhile;
     private JRadioButton rbFor;
     private JRadioButton rbWhile;
+    private JCheckBox checkBox;
 
     public SimpleApp() {
         initComponents();
@@ -43,6 +44,7 @@ public class SimpleApp extends JFrame {
         jLabel6 = new JLabel();
         fieldX1 = new JTextField();
         fieldX2 = new JTextField();
+        checkBox = new JCheckBox();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +72,8 @@ public class SimpleApp extends JFrame {
 
         jLabel6.setText("x2=");
 
+        checkBox.setText("Использовать вещественный счётчик");
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,31 +91,34 @@ public class SimpleApp extends JFrame {
                                                         .addComponent(jLabel4))
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addComponent(buttonCalculate)
-                                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                .addComponent(fieldC)
-                                                                .addComponent(fieldB)))))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(buttonCalculate)
+                                                                .addGap(0, 0, Short.MAX_VALUE))
+                                                        .addComponent(fieldC, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(fieldB, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))))
                                 .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(fieldX1, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labelResult)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(fieldX2)))
-                                .addContainerGap(39, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel5)
+                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(fieldX1, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGap(66, 66, 66)
+                                                        .addComponent(labelResult, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel6)
+                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(fieldX2, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(checkBox))
+                                .addContainerGap(19, Short.MAX_VALUE))
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(rbDoWhile)
-                                        .addComponent(rbWhile)
-                                        .addComponent(rbFor))
-                                .addGap(105, 105, 105))
+                                        .addComponent(rbFor, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rbWhile, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rbDoWhile, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+                                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -137,8 +144,9 @@ public class SimpleApp extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel4)
-                                        .addComponent(fieldC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                        .addComponent(fieldC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(checkBox))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(buttonCalculate, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(labelResult))
@@ -158,21 +166,20 @@ public class SimpleApp extends JFrame {
 
         Fnc fnc = new FncParabolic(a, b, c);
 
-        if (rbFor.isSelected()) {
+        outputValues(a, b, c, x1, x2, fnc);
+
+        if (checkBox.isSelected()) {
+            result = Integrals.integralLeftReal(x1, x2, fnc);
+            labelResult.setText("Результат: " + result);
+            return;
+        }
+
+        if (rbFor.isSelected())
             result = Integrals.integralFor(x1, x2, fnc);
-            outputValues(a, b, c, x1, x2, result, "For");
-        }
-        if (rbWhile.isSelected()) {
+        if (rbWhile.isSelected())
             result = Integrals.integralWhile(x1, x2, fnc);
-            outputValues(a, b, c, x1, x2, result, "While");
-
-        }
-        if (rbDoWhile.isSelected()) {
+        if (rbDoWhile.isSelected())
             result = Integrals.integralDoWhile(x1, x2, fnc);
-            outputValues(a, b, c, x1, x2, result, "Do...While");
-
-        }
-
 
         labelResult.setText("Результат: " + result);
     }
@@ -182,11 +189,13 @@ public class SimpleApp extends JFrame {
         app.setVisible(true);
         app.setResizable(false);
 
-        System.out.printf("Значения a: %1$3s Значения b: %1$3s Значения с: %1$3s Значения x1: %1$3s Значения x2: %1$3s Результат: %1$3s  Используемый цикл: \n", " ");
+        System.out.printf("Значения a: %1$3s Значения b: %1$3s Значения с: %1$3s Значения x1: %1$3s Значения x2: %1$3s Результат (левые):  Результат (средние): \n", " ");
     }
 
-    private void outputValues(double a, double b, double c, double x1, double x2, double result, String scope) {
+    private void outputValues(double a, double b, double c, double x1, double x2, Fnc fnc) {
+        double resultLeft = Integrals.integralLeftReal(x1, x2, fnc);
+        double resultMiddle = Integrals.integralMiddleReal(x1, x2, fnc);
 
-        System.out.printf("%-15.10f %-15.10f %-15.10f %-16.10f %-16.10f %-15.10f %s \n", a, b, c, x1, x2, result, scope);
+        System.out.printf("%-15.10f %-15.10f %-15.10f %-16.10f %-16.10f %-19.10f %.10f \n", a, b, c, x1, x2, resultLeft, resultMiddle);
     }
 }

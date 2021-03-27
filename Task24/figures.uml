@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.example</OriginalElement>
+  <nodes>
+    <node x="170.00000000000003" y="616.0">com.example.figures.Circle</node>
+    <node x="334.0" y="616.0">com.example.figures.Triangle</node>
+    <node x="316.0277777777778" y="395.0">com.example.figures.Dot</node>
+    <node x="718.0" y="616.0">com.example.figures.Rectangle</node>
+    <node x="531.0" y="616.0">com.example.figures.Ellipse</node>
+    <node x="59.08333333333337" y="374.0">com.example.figures.ScalableFigure</node>
+    <node x="0.0" y="616.0">com.example.figures.Square</node>
+    <node x="501.5" y="341.0">com.example.figures.StretchableFigure</node>
+    <node x="279.0" y="0.0">com.example.figures.Figure</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.figures.Dot" target="com.example.figures.Figure">
+      <point x="0.0" y="-58.5" />
+      <point x="372.5277777777778" y="316.0" />
+      <point x="359.5" y="316.0" />
+      <point x="0.0" y="145.5" />
+    </edge>
+    <edge source="com.example.figures.Ellipse" target="com.example.figures.StretchableFigure">
+      <point x="0.0" y="-58.5" />
+      <point x="0.0" y="112.5" />
+    </edge>
+    <edge source="com.example.figures.Rectangle" target="com.example.figures.StretchableFigure">
+      <point x="0.0" y="-58.5" />
+      <point x="811.0" y="591.0" />
+      <point x="689.8333333333333" y="591.0" />
+      <point x="75.33333333333326" y="112.5" />
+    </edge>
+    <edge source="com.example.figures.Triangle" target="com.example.figures.StretchableFigure">
+      <point x="0.0" y="-58.5" />
+      <point x="422.5" y="591.0" />
+      <point x="539.1666666666666" y="591.0" />
+      <point x="-75.33333333333337" y="112.5" />
+    </edge>
+    <edge source="com.example.figures.Circle" target="com.example.figures.ScalableFigure">
+      <point x="0.0" y="-58.5" />
+      <point x="242.00000000000003" y="591.0" />
+      <point x="201.58333333333337" y="591.0" />
+      <point x="47.5" y="79.5" />
+    </edge>
+    <edge source="com.example.figures.ScalableFigure" target="com.example.figures.Figure">
+      <point x="0.0" y="-79.5" />
+      <point x="154.08333333333337" y="316.0" />
+      <point x="305.83333333333337" y="316.0" />
+      <point x="-53.66666666666663" y="145.5" />
+    </edge>
+    <edge source="com.example.figures.StretchableFigure" target="com.example.figures.Figure">
+      <point x="0.0" y="-112.5" />
+      <point x="614.5" y="316.0" />
+      <point x="413.16666666666663" y="316.0" />
+      <point x="53.66666666666663" y="145.5" />
+    </edge>
+    <edge source="com.example.figures.Square" target="com.example.figures.ScalableFigure">
+      <point x="0.0" y="-58.5" />
+      <point x="75.0" y="591.0" />
+      <point x="106.58333333333337" y="591.0" />
+      <point x="-47.5" y="79.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9189907038512616" x="452.0" y="356.5" />
+  <SelectedNodes>
+    <node>com.example.figures.Ellipse</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
