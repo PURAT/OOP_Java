@@ -155,25 +155,20 @@ public class SimpleApp extends JFrame {
         double x1 = Double.parseDouble(fieldX1.getText());
         double x2 = Double.parseDouble(fieldX2.getText());
         double result = 0;
-
+        int n = 10000;
         Fnc fnc = new FncParabolic(a, b, c);
-
         if (rbFor.isSelected()) {
-            result = Integrals.integralFor(x1, x2, fnc);
-            outputValues(a, b, c, x1, x2, result, "For");
+            result = Integral.integralFor(x1, x2, n, fnc);
+            outputValues(a, b, c, x1, x2, result, "for");
         }
         if (rbWhile.isSelected()) {
-            result = Integrals.integralWhile(x1, x2, fnc);
-            outputValues(a, b, c, x1, x2, result, "While");
-
+            result = Integral.integralWhile(x1, x2, n, fnc);
+            outputValues(a, b, c, x1, x2, result, "while");
         }
         if (rbDoWhile.isSelected()) {
-            result = Integrals.integralDoWhile(x1, x2, fnc);
-            outputValues(a, b, c, x1, x2, result, "Do...While");
-
+            result = Integral.integralDoWhile(x1, x2, n, fnc);
+            outputValues(a, b, c, x1, x2, result, "do...while");
         }
-
-
         labelResult.setText("Результат: " + result);
     }
 
